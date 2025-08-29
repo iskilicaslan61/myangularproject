@@ -1,45 +1,33 @@
-<div class="calculator-container">
-  <div class="calculator">
-    <div class="calculator-display">
-      <div class="display-text">{{ displayText }}</div>
-      <div class="display-expression">{{ displayExpression }}</div>
+<div class="p-3 mt-2 mb-2 bg-primary text-white rounded-5">
+    <h2>Simple Calculator</h2>
+    <form [formGroup]="calculatorForm" (ngSubmit)="onSubmit()">
+        <div class="row mt-2">
+            <div class="col">
+                <input type="number" id="first_input" class="form-control" placeholder="First Number"
+                    formControlName="firstInput" name="first_input" required>
+            </div>
+            <div class="col">
+                <select id="operator" class="form-control" formControlName="operator" name="operator" required>
+                    <option value="">Select + - / *</option>
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="/">/</option>
+                    <option value="*">*</option>
+                </select>
+            </div>
+            <div class="col">
+                <input type="number" id="second_input" class="form-control" placeholder="Second Number"
+                    formControlName="secondInput" name="second_input" required>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col text-right">
+                <button class="btn btn-danger m-1 rounded-5" type="button" [disabled]="!calculatorForm.dirty" (click)="onClear()">Clear</button>
+                <button class="btn btn-success m-1 rounded-5" type="submit" [disabled]="!calculatorForm.valid || !calculatorForm.dirty">Let's Calculate</button>
+            </div>
+        </div>
+    </form>
+    <div class="alert alert-primary mt-3 h5" role="alert" *ngIf="result">
+        <strong>Result:</strong> {{ result }}
     </div>
-    
-    <div class="calculator-buttons">
-      <button class="calc-btn clear-btn" (click)="clearCalculator()">AC</button>
-      <button class="calc-btn operator-btn" (click)="handleOperator('±')">±</button>
-      <button class="calc-btn operator-btn" (click)="handleOperator('%')">%</button>
-      <button class="calc-btn operator-btn" (click)="handleOperator('÷')">÷</button>
-      
-      <button class="calc-btn number-btn" (click)="handleNumber('7')">7</button>
-      <button class="calc-btn number-btn" (click)="handleNumber('8')">8</button>
-      <button class="calc-btn number-btn" (click)="handleNumber('9')">9</button>
-      <button class="calc-btn operator-btn" (click)="handleOperator('×')">×</button>
-      
-      <button class="calc-btn number-btn" (click)="handleNumber('4')">4</button>
-      <button class="calc-btn number-btn" (click)="handleNumber('5')">5</button>
-      <button class="calc-btn number-btn" (click)="handleNumber('6')">6</button>
-      <button class="calc-btn operator-btn" (click)="handleOperator('-')">-</button>
-      
-      <button class="calc-btn number-btn" (click)="handleNumber('1')">1</button>
-      <button class="calc-btn number-btn" (click)="handleNumber('2')">2</button>
-      <button class="calc-btn number-btn" (click)="handleNumber('3')">3</button>
-      <button class="calc-btn operator-btn" (click)="handleOperator('+')">+</button>
-      
-      <button class="calc-btn number-btn zero-btn" (click)="handleNumber('0')">0</button>
-      <button class="calc-btn number-btn" (click)="handleNumber('.')">.</button>
-      <button class="calc-btn equals-btn" (click)="calculateResult()">=</button>
-    </div>
-  </div>
-  
-  <div class="calculator-title">
-    <h2>🧮 Fun Calculator</h2>
-    <p>Click the buttons to calculate!</p>
-  </div>
-</div>
-
-<!-- Signature Section -->
-<div class="signature-container">
-  <p class="signature-text">🎨 Created with Magic by 🎨</p>
-  <h3 class="author-name">Ismail Kilicaslan</h3>
 </div>
