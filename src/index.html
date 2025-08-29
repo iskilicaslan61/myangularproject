@@ -143,6 +143,164 @@
       animation: pulse 2s infinite;
     }
     
+    .calculator-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      animation: slideInUp 1s ease-out 0.3s both;
+    }
+    
+    .calculator {
+      background: linear-gradient(145deg, #2c3e50, #34495e);
+      border-radius: 25px;
+      padding: 2rem;
+      box-shadow: 
+        0 20px 40px rgba(0,0,0,0.3),
+        inset 0 2px 0 rgba(255,255,255,0.1);
+      border: 3px solid #1a252f;
+      min-width: 320px;
+    }
+    
+    .calculator-display {
+      background: linear-gradient(145deg, #1a252f, #2c3e50);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 2px solid #34495e;
+      box-shadow: inset 0 4px 8px rgba(0,0,0,0.3);
+    }
+    
+    .display-text {
+      font-size: 3rem;
+      color: #ecf0f1;
+      text-align: right;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      min-height: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    
+    .display-expression {
+      font-size: 1.2rem;
+      color: #bdc3c7;
+      text-align: right;
+      font-family: 'Courier New', monospace;
+      min-height: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    
+    .calculator-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    
+    .calc-btn {
+      padding: 1.2rem;
+      border: none;
+      border-radius: 15px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Arial', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .calc-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    
+    .calc-btn:hover::before {
+      opacity: 1;
+    }
+    
+    .calc-btn:active {
+      transform: translateY(2px);
+    }
+    
+    .number-btn {
+      background: linear-gradient(145deg, #ecf0f1, #bdc3c7);
+      color: #2c3e50;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .number-btn:hover {
+      background: linear-gradient(145deg, #ffffff, #ecf0f1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .operator-btn {
+      background: linear-gradient(145deg, #f39c12, #e67e22);
+      color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .operator-btn:hover {
+      background: linear-gradient(145deg, #f1c40f, #f39c12);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .clear-btn {
+      background: linear-gradient(145deg, #e74c3c, #c0392b);
+      color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .clear-btn:hover {
+      background: linear-gradient(145deg, #ff6b6b, #e74c3c);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .equals-btn {
+      background: linear-gradient(145deg, #27ae60, #2ecc71);
+      color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .equals-btn:hover {
+      background: linear-gradient(145deg, #2ecc71, #27ae60);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .zero-btn {
+      grid-column: span 2;
+    }
+    
+    .calculator-title {
+      text-align: center;
+      color: white;
+      text-shadow: 3px 3px 0px #FF6B6B, 6px 6px 0px #4ECDC4;
+    }
+    
+    .calculator-title h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-family: 'Comic Sans MS', cursive;
+    }
+    
+    .calculator-title p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
     .signature-container {
       text-align: center;
       margin-top: 2rem;
@@ -353,19 +511,45 @@
       <div class="floating-element">🌟</div>
     </div>
     
-    <div class="logo-container">
-      <div class="logo">🎪</div>
-      <h1 class="title">Kids Cloud Adventure!</h1>
-      <p class="subtitle">Learn AWS with Fun & Magic! ✨</p>
+    <div class="calculator-container">
+      <div class="calculator">
+        <div class="calculator-display">
+          <div class="display-text">0</div>
+          <div class="display-expression"></div>
+        </div>
+        
+        <div class="calculator-buttons">
+          <button class="calc-btn clear-btn" data-action="clear">AC</button>
+          <button class="calc-btn operator-btn" data-action="operator" data-value="±">±</button>
+          <button class="calc-btn operator-btn" data-action="operator" data-value="%">%</button>
+          <button class="calc-btn operator-btn" data-action="operator" data-value="÷">÷</button>
+          
+          <button class="calc-btn number-btn" data-value="7">7</button>
+          <button class="calc-btn number-btn" data-value="8">8</button>
+          <button class="calc-btn number-btn" data-value="9">9</button>
+          <button class="calc-btn operator-btn" data-action="operator" data-value="×">×</button>
+          
+          <button class="calc-btn number-btn" data-value="4">4</button>
+          <button class="calc-btn number-btn" data-value="5">5</button>
+          <button class="calc-btn number-btn" data-value="6">6</button>
+          <button class="calc-btn operator-btn" data-action="operator" data-value="-">-</button>
+          
+          <button class="calc-btn number-btn" data-value="1">1</button>
+          <button class="calc-btn number-btn" data-value="2">2</button>
+          <button class="calc-btn number-btn" data-value="3">3</button>
+          <button class="calc-btn operator-btn" data-action="operator" data-value="+">+</button>
+          
+          <button class="calc-btn number-btn zero-btn" data-value="0">0</button>
+          <button class="calc-btn number-btn" data-value=".">.</button>
+          <button class="calc-btn equals-btn" data-action="equals">=</button>
+        </div>
+      </div>
+      
+      <div class="calculator-title">
+        <h2>🧮 Fun Calculator</h2>
+        <p>Click the buttons to calculate!</p>
+      </div>
     </div>
-    
-    <div class="loading-spinner"></div>
-    
-    <div class="progress-bar">
-      <div class="progress-fill"></div>
-    </div>
-    
-    <p class="loading-text">🎭 Getting ready for your magical adventure! 🎭</p>
     
     <!-- Signature Section -->
     <div class="signature-container">
@@ -378,21 +562,155 @@
   <app-root></app-root>
 
   <script>
-    // Enhanced loading experience
+    // Calculator functionality
     document.addEventListener('DOMContentLoaded', function() {
-      const loadingContainer = document.getElementById('loadingContainer');
+      const displayText = document.querySelector('.display-text');
+      const displayExpression = document.querySelector('.display-expression');
+      const buttons = document.querySelectorAll('.calc-btn');
       
-      // Simulate loading time with enhanced experience
-      setTimeout(() => {
-        loadingContainer.classList.add('fade-out');
+      let currentNumber = '0';
+      let previousNumber = null;
+      let operation = null;
+      let shouldResetDisplay = false;
+      
+      // Add click event to all calculator buttons
+      buttons.forEach(button => {
+        button.addEventListener('click', function() {
+          const value = this.dataset.value;
+          const action = this.dataset.action;
+          
+          if (action === 'clear') {
+            clearCalculator();
+          } else if (action === 'equals') {
+            calculateResult();
+          } else if (action === 'operator') {
+            handleOperator(value);
+          } else if (value) {
+            handleNumber(value);
+          }
+          
+          // Add button press effect
+          this.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 100);
+        });
+      });
+      
+      function handleNumber(num) {
+        if (shouldResetDisplay) {
+          currentNumber = num;
+          shouldResetDisplay = false;
+        } else {
+          if (currentNumber === '0' && num !== '.') {
+            currentNumber = num;
+          } else {
+            if (num === '.' && currentNumber.includes('.')) return;
+            currentNumber += num;
+          }
+        }
+        updateDisplay();
+      }
+      
+      function handleOperator(op) {
+        if (op === '±') {
+          currentNumber = (parseFloat(currentNumber) * -1).toString();
+          updateDisplay();
+          return;
+        }
         
-        // Remove loading container after animation
-        setTimeout(() => {
-          loadingContainer.remove();
-        }, 500);
-      }, 2500);
+        if (op === '%') {
+          currentNumber = (parseFloat(currentNumber) / 100).toString();
+          updateDisplay();
+          return;
+        }
+        
+        if (previousNumber !== null && operation !== null) {
+          calculateResult();
+        }
+        
+        previousNumber = parseFloat(currentNumber);
+        operation = op;
+        shouldResetDisplay = true;
+        
+        // Update expression display
+        displayExpression.textContent = `${previousNumber} ${getOperatorSymbol(operation)}`;
+      }
       
-      // Add some interactive elements
+      function calculateResult() {
+        if (previousNumber === null || operation === null) return;
+        
+        const current = parseFloat(currentNumber);
+        let result;
+        
+        switch (operation) {
+          case '+':
+            result = previousNumber + current;
+            break;
+          case '-':
+            result = previousNumber - current;
+            break;
+          case '×':
+            result = previousNumber * current;
+            break;
+          case '÷':
+            if (current === 0) {
+              result = 'Error';
+            } else {
+              result = previousNumber / current;
+            }
+            break;
+          default:
+            return;
+        }
+        
+        if (result === 'Error') {
+          displayText.textContent = 'Error';
+          displayExpression.textContent = '';
+        } else {
+          currentNumber = result.toString();
+          displayExpression.textContent = `${previousNumber} ${getOperatorSymbol(operation)} ${parseFloat(currentNumber)} =`;
+        }
+        
+        previousNumber = null;
+        operation = null;
+        shouldResetDisplay = true;
+        updateDisplay();
+      }
+      
+      function clearCalculator() {
+        currentNumber = '0';
+        previousNumber = null;
+        operation = null;
+        shouldResetDisplay = false;
+        displayExpression.textContent = '';
+        updateDisplay();
+      }
+      
+      function updateDisplay() {
+        if (currentNumber === 'Error') {
+          displayText.textContent = 'Error';
+        } else {
+          const num = parseFloat(currentNumber);
+          if (Number.isInteger(num)) {
+            displayText.textContent = num.toString();
+          } else {
+            displayText.textContent = parseFloat(num.toFixed(8)).toString();
+          }
+        }
+      }
+      
+      function getOperatorSymbol(op) {
+        const symbols = {
+          '+': '+',
+          '-': '-',
+          '×': '×',
+          '÷': '÷'
+        };
+        return symbols[op] || op;
+      }
+      
+      // Add floating elements interaction
       document.addEventListener('mousemove', function(e) {
         const elements = document.querySelectorAll('.floating-element');
         const x = e.clientX / window.innerWidth;
